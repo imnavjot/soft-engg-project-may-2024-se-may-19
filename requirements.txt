@@ -1,0 +1,8 @@
+Flask
+python-docx
+Flask-Cors
+PyPDF2
+requests
+flask_sqlalchemy
+flask_bcrypt
+flask-login

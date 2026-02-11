@@ -1,0 +1,623 @@
+openapi: 3.0.0
+info:
+  title: AI-Enhanced Educational Platform API
+  description: |-
+    <h1>Software Engineering Project: Milestone 4</h1>
+    <h2>Task: API Endpoints Documentation</h2>
+    <h3>Course: BSCSS3001 - Software Engineering</h3>
+    <h3>Team  19 </h3>
+    <h3>Members:
+    <ul><li>NAVJOT	21f2000931@ds.study.iitm.ac.in</li>
+    <li>PRIYADARSHINI S	21f1001572@ds.study.iitm.ac.in</li>
+    <li>JAY KASHYAP	21f1002984@ds.study.iitm.ac.in</li>
+    <li>Aloney Neeraj	21f1006471@ds.study.iitm.ac.in</li>
+    <li>AMAL ROY	21f1004594@ds.study.iitm.ac.in)</li>
+    <li>BALASURYA K	22f3002744@ds.study.iitm.ac.in</li>
+    <li>SHELLEY R	21f1005512@ds.study.iitm.ac.in</li>
+    <li>AMAY S RANA	21f3002432@ds.study.iitm.ac.in</li>
+    </ul>
+    </h3>
+    <h3>Program: BS in Data Science and Applications</h3>
+    <h3>Institute: Indian Institute of Technology, Madras</h3>
+    </br></br>
+  version: 1.0.0
+paths:
+  /content_summary:
+    post:
+      summary: Generate a summary for a video content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                videoId:
+                  type: string
+                  description: ID of the video
+                type:
+                  type: string
+                  enum: [complete, partial]
+                  description: Type of summary
+                endTime:
+                  type: integer
+                  description: End time for partial summary
+      responses:
+        '200':
+          description: Summary generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /generate_questions:
+    post:
+      summary: Generate multiple choice questions from video content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                videoId:
+                  type: string
+                  description: ID of the video
+                endTime:
+                  type: integer
+                  description: End time for partial text extraction
+      responses:
+        '200':
+          description: Questions generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  questions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                        options:
+                          type: array
+                          items:
+                            type: string
+                        correct:
+                          type: string
+        '500':
+          description: Internal server error
+
+  /evaluate_answers:
+    post:
+      summary: Evaluate user answers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question:
+                        type: string
+                      correct:
+                        type: string
+                answers:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Answers evaluated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  correct_count:
+                    type: integer
+        '400':
+          description: Invalid request parameters
+
+  /pdf_summary:
+    post:
+      summary: Generate a summary for a PDF document
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pdfUrl:
+                  type: string
+                  description: URL of the PDF document
+      responses:
+        '200':
+          description: Summary generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: string
+        '500':
+          description: Internal server error
+
+  /ppa_test_run:
+    post:
+      summary: Run public tests for provided code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                testCases:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      input:
+                        type: array
+                        items:
+                          type: string
+                      expected:
+                        type: string
+                functionName:
+                  type: string
+      responses:
+        '200':
+          description: Test results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: object
+                    properties:
+                      public:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            input:
+                              type: array
+                              items:
+                                type: string
+                            expected:
+                              type: string
+                            output:
+                              type: string
+                            result:
+                              type: string
+        '500':
+          description: Internal server error
+
+  /ppa_submit:
+    post:
+      summary: Submit code and run all tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                testCases:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      input:
+                        type: array
+                        items:
+                          type: string
+                      expected:
+                        type: string
+                functionName:
+                  type: string
+      responses:
+        '200':
+          description: Test results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: object
+                    properties:
+                      public:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            input:
+                              type: array
+                              items:
+                                type: string
+                            expected:
+                              type: string
+                            output:
+                              type: string
+                            result:
+                              type: string
+                      private:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            input:
+                              type: array
+                              items:
+                                type: string
+                            expected:
+                              type: string
+                            output:
+                              type: string
+                            result:
+                              type: string
+        '500':
+          description: Internal server error
+
+  /pseudocode:
+    post:
+      summary: Generate pseudocode for a problem statement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+      responses:
+        '200':
+          description: Pseudocode generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pseudocode:
+                    type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /analyze:
+    post:
+      summary: Analyze code for quality issues
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+      responses:
+        '200':
+          description: Code analysis
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issues:
+                    type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /feedback:
+    post:
+      summary: Provide feedback for code errors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                results:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      input:
+                        type: array
+                        items:
+                          type: string
+                      expected:
+                        type: string
+                      output:
+                        type: string
+                      result:
+                        type: string
+      responses:
+        '200':
+          description: Feedback generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  feedback:
+                    type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /improvement:
+    post:
+      summary: Suggest code improvements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+      responses:
+        '200':
+          description: Improvement suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  improvements:
+                    type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /gaanswers:
+    post:
+      summary: Evaluate general assignment answers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question_id:
+                        type: string
+                      selected:
+                        type: string
+      responses:
+        '200':
+          description: Evaluation results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  correct_count:
+                    type: integer
+                  feedback:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                        correct_answer:
+                          type: string
+                        selected_answer:
+                          type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /gaimprovement:
+    post:
+      summary: Provide suggestions for general assignment improvements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                feedback:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question:
+                        type: string
+                      correct_answer:
+                        type: string
+                      selected_answer:
+                        type: string
+      responses:
+        '200':
+          description: Improvement suggestions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  improvements:
+                    type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /paanswers:
+    post:
+      summary: Evaluate practice assignment answers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question_id:
+                        type: string
+                      selected:
+                        type: string
+      responses:
+        '200':
+          description: Evaluation results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  correct_count:
+                    type: integer
+                  feedback:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                        correct_answer:
+                          type: string
+                        selected_answer:
+                          type: string
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+
+  /paimprovement:
+    post:
+      summary: Provide improvement suggestions based on feedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                feedback:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question:
+                        type: string
+                      correct_answer:
+                        type: string
+                      selected_answer:
+                        type: string
+      responses:
+        '200':
+          description: Improvement suggestions generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  improvements:
+                    type: string
+        '400':
+          description: No feedback provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+
+  /chat:
+    post:
+      summary: Chat with AI
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+      responses:
+        '200':
+          description: Chat response generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chat:
+                    type: string
+        '400':
+          description: No prompt provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
