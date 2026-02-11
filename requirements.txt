@@ -6,4 +6,3 @@ requests
 flask_sqlalchemy
 flask_bcrypt
 flask-login
-gunicorn
