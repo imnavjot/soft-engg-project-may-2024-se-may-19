@@ -139,7 +139,7 @@ export default {
       const weekId = this.$route.params.weekId;
 
       try {
-        const response = await fetch(`http://localhost:5000/course/${courseId}`);
+        const response = await fetch(`https://seprojectbackend.koyeb.app/course/${courseId}`);
         const data = await response.json();
         this.course = data;
         this.activeWeek = parseInt(weekId, 10) || (this.course.weeks[0] ? this.course.weeks[0].id : null);
@@ -208,7 +208,7 @@ export default {
       const code = this.editor.getValue();
       const functionName = this.extractFunctionName(code);
       try {
-        const response = await fetch('http://localhost:5000/ppa_test_run', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/ppa_test_run', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -230,7 +230,7 @@ export default {
       const code = this.editor.getValue();
       const functionName = this.extractFunctionName(code);
       try {
-        const response = await fetch('http://localhost:5000/ppa_submit', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/ppa_submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -248,7 +248,7 @@ export default {
     async analyzeCode() {
       this.analysisloading = true;
       try {
-        const response = await fetch('http://localhost:5000/analyze', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/analyze', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -265,7 +265,7 @@ export default {
     },
     async signout() {
       try {
-        const response = await fetch('http://localhost:5000/signout', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/signout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

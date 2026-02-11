@@ -40,4 +40,4 @@
 3.  **Access Your Application**:
 
     -   Open your web browser and go to `http://localhost:8080` for the frontend.
-    -   The Flask API will be running on `http://127.0.0.1:5000`.
+    -   The Flask API will be running on `https://seprojectbackend.koyeb.app`.

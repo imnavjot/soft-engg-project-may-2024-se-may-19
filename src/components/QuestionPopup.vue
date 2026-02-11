@@ -85,7 +85,7 @@ export default {
 
       while (attempts < maxRetries) {
         try {
-          const response = await fetch('http://localhost:5000/generate_questions', {
+          const response = await fetch('https://seprojectbackend.koyeb.app/generate_questions', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -128,7 +128,7 @@ export default {
     },
     async submitAnswers() {
       try {
-        const response = await fetch('http://localhost:5000/evaluate_answers', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/evaluate_answers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

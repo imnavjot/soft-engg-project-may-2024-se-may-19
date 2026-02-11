@@ -57,7 +57,7 @@ export default {
       }
 
       try {
-        const response = await fetch('http://127.0.0.1:5000/content_summary', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/content_summary', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

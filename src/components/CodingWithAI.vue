@@ -40,7 +40,7 @@ export default {
     async provideAI() {
       this.loading = true;
       try {
-        const response = await fetch('http://127.0.0.1:5000/pseudocode', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/pseudocode', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export default {
       try {
         const failedCases = this.testResults.filter(result => result !== 'Passed');
         if (failedCases.length > 0) {
-          const response = await fetch('http://127.0.0.1:5000/feedback', {
+          const response = await fetch('https://seprojectbackend.koyeb.app/feedback', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default {
           const data = await response.json();
           this.feedback = data.feedback;
         } else {
-          const response = await fetch('http://127.0.0.1:5000/improvement', {
+          const response = await fetch('https://seprojectbackend.koyeb.app/improvement', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

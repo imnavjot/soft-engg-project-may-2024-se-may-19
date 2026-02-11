@@ -91,7 +91,7 @@ export default {
     async fetchCourses() {
       this.loading = true;
       try {
-        const response = await fetch('http://localhost:5000/courses');
+        const response = await fetch('https://seprojectbackend.koyeb.app/courses');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -107,7 +107,7 @@ export default {
     },
     async signout() {
       try {
-        const response = await fetch('http://localhost:5000/signout', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/signout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -38,7 +38,7 @@ export default {
   methods: {
     async signup() {
       try {
-        const response = await fetch('http://localhost:5000/signup', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

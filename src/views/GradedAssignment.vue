@@ -88,7 +88,7 @@ export default {
       const weekId = this.$route.params.weekId;
 
       try {
-        const response = await fetch(`http://localhost:5000/course/${courseId}`);
+        const response = await fetch(`https://seprojectbackend.koyeb.app/course/${courseId}`);
         const data = await response.json();
         this.course = data;
         this.activeWeek = parseInt(weekId, 10) || (this.course.weeks[0] ? this.course.weeks[0].id : null);
@@ -114,7 +114,7 @@ export default {
     },
     async submitAnswers() {
       try {
-        const response = await fetch('http://localhost:5000/gaanswers', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/gaanswers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ answers: Object.entries(this.answers).map(([question_id, selected]) => ({ question_id, selected })) })
@@ -141,7 +141,7 @@ export default {
     async getImprovements() {
       this.loading = true;
       try {
-        const response = await fetch('http://localhost:5000/gaimprovement', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/gaimprovement', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ feedback: this.feedback })
@@ -163,7 +163,7 @@ export default {
     },
     async signout() {
       try {
-        const response = await fetch('http://localhost:5000/signout', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/signout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

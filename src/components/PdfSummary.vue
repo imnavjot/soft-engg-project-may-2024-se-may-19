@@ -35,7 +35,7 @@ export default {
       const data = { pdfUrl: this.pdfUrl};
 
       try {
-        const response = await fetch('http://127.0.0.1:5000/pdf_summary', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/pdf_summary', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

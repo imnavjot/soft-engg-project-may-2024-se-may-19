@@ -2,7 +2,7 @@ import unittest
 import requests
 import uuid
 
-BASE_URL = "http://localhost:5000"
+BASE_URL = "https://seprojectbackend.koyeb.app"
 
 class APITestCases(unittest.TestCase):
 

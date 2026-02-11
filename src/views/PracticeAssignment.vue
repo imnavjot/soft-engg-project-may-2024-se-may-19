@@ -92,7 +92,7 @@ export default {
       const weekId = this.$route.params.weekId;
 
       try {
-        const response = await fetch(`http://localhost:5000/course/${courseId}`);
+        const response = await fetch(`https://seprojectbackend.koyeb.app/course/${courseId}`);
         const data = await response.json();
         this.course = data;
         this.activeWeek = parseInt(weekId, 10) || (this.course.weeks[0] ? this.course.weeks[0].id : null);
@@ -119,7 +119,7 @@ export default {
     },
     async getHint(questionId) {
       try {
-        const response = await fetch('http://localhost:5000/pahint', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/pahint', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ question_id: questionId })
@@ -137,7 +137,7 @@ export default {
     },
     async submitAnswers() {
       try {
-        const response = await fetch('http://localhost:5000/paanswers', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/paanswers', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ answers: Object.entries(this.answers).map(([question_id, selected]) => ({ question_id, selected })) })
@@ -164,7 +164,7 @@ export default {
     async getImprovements() {
       this.loading = true;
       try {
-        const response = await fetch('http://localhost:5000/paimprovement', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/paimprovement', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ feedback: this.feedback })
@@ -186,7 +186,7 @@ export default {
     },
     async signout() {
       try {
-        const response = await fetch('http://localhost:5000/signout', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/signout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

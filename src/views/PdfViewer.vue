@@ -54,7 +54,7 @@ export default {
     const lectureId = this.$route.params.lectureId;
 
     try {
-      const response = await fetch(`http://localhost:5000/course/${courseId}`);
+      const response = await fetch(`https://seprojectbackend.koyeb.app/course/${courseId}`);
       const data = await response.json();
       this.course = data;
       console.log('Fetching course data for course ID:', courseId);
@@ -77,7 +77,7 @@ export default {
     
     async signout() {
       try {
-        const response = await fetch('http://localhost:5000/signout', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/signout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
