@@ -38,7 +38,7 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await fetch('https://monthly-marya-navjotkoth-530f8c03.koyeb.app/login', {
+        const response = await fetch('https://seprojectbackend.koyeb.app/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
