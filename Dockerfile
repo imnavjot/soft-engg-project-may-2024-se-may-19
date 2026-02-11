@@ -1,36 +1,23 @@
-# ---------- FRONTEND BUILD STAGE ----------
-FROM node:20 AS frontend
+# Build stage
+FROM node:20 AS build
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
 RUN npm install
 
-# Copy all project files
 COPY . .
-
-# Build Vue
 RUN npm run build
 
-
-# ---------- BACKEND STAGE ----------
-FROM python:3.13
+# Production stage
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Install backend dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN npm install -g serve
 
-# Copy backend code
-COPY . .
+COPY --from=build /app/dist ./dist
 
-# Copy built Vue dist into Flask static folder
-COPY --from=frontend /app/dist ./static
+EXPOSE 8080
 
-# Expose port (required for Koyeb)
-EXPOSE 8000
-
-# Run app using dynamic port
-CMD ["sh", "-c", "gunicorn app:app --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "serve -s dist -l $PORT"]
