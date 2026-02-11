@@ -54,6 +54,12 @@ def query(prompt):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
+@app.route("/")
+def serve():
+    return app.send_static_file("index.html")
+
+
 @app.route('/courses', methods=['GET'])
 def get_courses():
     try:
