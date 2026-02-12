@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify, redirect, url_for, session
 from docx import Document
 import re
+import os
 from flask_cors import CORS
 import logging
 from io import BytesIO
@@ -28,7 +29,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 def query(prompt):
