@@ -43,7 +43,7 @@
     -   The Flask API will be running on `http://127.0.0.1:5000`.
     -   Add Groq Api Key at line:31 in app.py file for intergration of AI by visiting https://console.groq.com/keys , For internal development only; do not expose the API key.
 
-4. **Team Members**:
+ **Team Members**:
    - NAVJOT 21f2000931@ds.study.iitm.ac.in
    - PRIYADARSHINI S 21f1001572@ds.study.iitm.ac.in
    - JAY KASHYAP 21f1002984@ds.study.iitm.ac.in
