@@ -41,3 +41,4 @@
 
     -   Open your web browser and go to `http://localhost:8080` for the frontend.
     -   The Flask API will be running on `http://127.0.0.1:5000`.
+    -   Add Groq Api Key at line:31 in app.py file for intergration of AI by visiting https://console.groq.com/keys , For internal development only; do not expose the API key.
